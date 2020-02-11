@@ -5,7 +5,7 @@ import FormInput from "./../form-input/form-input.component";
 import "./sign-in.styles.scss";
 import CustomButton from "./../custom-button/custom-button.component";
 
-import { signInWithGoogle } from "../../firebase/firebase-utils";
+import { signInWithGoogle, auth } from "../../firebase/firebase-utils";
 
 const SignIn = () => {
   // const [email, setEmail] = useState("");
@@ -15,17 +15,23 @@ const SignIn = () => {
     password: "",
     email: ""
   });
+  const { email, password } = state;
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    setState({ ...state, email: "", password: "" });
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setState({ ...state, email: "", password: "" });
+    } catch (error) { 
+      console.log(error);
+    }
   };
 
   const handleChange = event => {
     const { value, name } = event.target;
     setState({ ...state, [name]: value });
   };
-  const { email, password } = state;
   return (
     <div className="sign-in">
       <h2>I already have an account</h2>
