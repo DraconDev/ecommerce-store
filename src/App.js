@@ -13,7 +13,7 @@ import { setCurrentUser } from "./redux/user/user.actions";
 // let unsubscribeFromAuth = null;
 
 function App(props) {
-  console.log("props", props);
+  // console.log("props", props);
   const dispatch = useDispatch();
   const { setCurrentUser, currentUser } = props;
   // console.log(dispatch(setCurrentUser)(user));
@@ -23,7 +23,7 @@ function App(props) {
 
   // Current User Changes
   useEffect(() => {
-    console.log("user", currentUser);
+    // console.log("user", currentUser);
   }, [currentUser]);
 
   //Loads user
