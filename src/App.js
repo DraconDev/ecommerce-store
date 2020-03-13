@@ -16,8 +16,9 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 // let unsubscribeFromAuth = null;
 
 function App(props) {
+  console.log("mainprops", props);
   // console.log("props", props);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { setCurrentUser, currentUser } = props;
   // console.log(dispatch(setCurrentUser)(user));
   // const currentUser = (setCurrentUser: user => dispatch(setCurrentUser(user))

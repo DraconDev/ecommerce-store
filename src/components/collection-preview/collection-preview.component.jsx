@@ -4,6 +4,9 @@ import React from "react";
 import CollectionItem from "../collection-item/collection-item.component.jsx";
 import "./collection-preview.styles.scss";
 
+
+
+
 function CollectionPreview({ title, items }) {
   return (
     <div className="collection-preview">
