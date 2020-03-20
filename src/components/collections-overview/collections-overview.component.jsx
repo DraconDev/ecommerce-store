@@ -5,12 +5,17 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCollections } from "../../redux/shop/shop.selectors";
 
-const collectionsOverview = ({ collections }) => {
+const collectionsOverview = (props) => {
+  console.log("collectionsOverviewProps", props);
+  const { collections } = props;
+  // console.log("collections", collections);
   return (
     <div className="collections-overview">
-      {collections.map(({ id, ...props }) => (
-        <CollectionPreview key={id} {...props} />
-      ))}
+      {collections
+        ? collections.map(({ id, ...props }) => (
+            <CollectionPreview key={id} {...props} />
+          ))
+        : "loading"}
     </div>
   );
 };

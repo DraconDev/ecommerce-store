@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React from "react";
 import CustomButton from "../custom-button/custom-button.component";
 import "./cart-dropdown.styles.scss";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import CartItem from "../cart-item/cart-item.component";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
