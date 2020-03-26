@@ -5,7 +5,7 @@ const COLLECTIONS_ID_MAP = {
   sneakers: 2,
   jackets: 3,
   womens: 4,
-  mens: 5
+  mens: 5,
 };
 
 const selectShop = (state) => state.shop;
@@ -21,6 +21,14 @@ export const selectCollectionsForPreview = createSelector(
     collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
+// export const selectCollection = (collectionUrlParam) =>
+//   createSelector([selectCollections], (collections) =>
+//     collections.find((collection) => {
+//       console.log(collection.id, collectionUrlParam);
+//       return collection.id === COLLECTIONS_ID_MAP[collectionUrlParam];
+//     })
+//   );
+
 export const selectCollection = (collectionUrlParam) =>
   createSelector([selectCollections], (collections) =>
     collections.find((collection) => {
@@ -28,3 +36,18 @@ export const selectCollection = (collectionUrlParam) =>
       return collection.id === COLLECTIONS_ID_MAP[collectionUrlParam];
     })
   );
+
+// export const selectCollection = (collectionUrlParam) =>
+//   createSelector([selectCollections], (collections) =>
+//     collections ? collections[collectionUrlParam] : null
+//   );
+
+export const selectIsCollectionFetching = createSelector(
+  selectShop,
+  (shop) => shop.isFetching
+);
+
+export const selectIsCollectionsLoaded = createSelector(
+  selectShop,
+  (shop) => !!shop.collections
+);

@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCollections } from "../../redux/shop/shop.selectors";
 
 const collectionsOverview = (props) => {
-  console.log("collectionsOverviewProps", props);
+  // console.log("collectionsOverviewProps", props);
   const { collections } = props;
   // console.log("collections", collections);
   return (
