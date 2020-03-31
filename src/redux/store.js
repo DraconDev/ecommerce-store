@@ -8,13 +8,22 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [logger, thunk, sagaMiddleware];
 
-export const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(...middlewares),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const isChrome =
+  !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+// console.log("store.js", isChrome);
+
+const middlewaresWithDevtools = isChrome
+  ? compose(
+      (applyMiddleware(...middlewares),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__())
+    )
+  : applyMiddleware(...middlewares);
+
+// console.log(middlewaresWithDevtools);
+
+export const store = createStore(rootReducer, middlewaresWithDevtools);
 
 // sagaMiddleware.run()
 
