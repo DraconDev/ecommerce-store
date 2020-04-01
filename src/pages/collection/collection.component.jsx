@@ -4,7 +4,7 @@ import { connect, useSelector } from "react-redux";
 
 import {
   selectCollection,
-  selectCollections
+  selectCollections,
 } from "../../redux/shop/shop.selectors";
 
 import CollectionItem from "../../components/collection-item/collection-item.component";
@@ -29,7 +29,7 @@ const CollectionPage = (props) => {
 
   return (
     <div className="collection-page">
-      <h2 className="title">"asads"{title}</h2>
+      <h2 className="title">{title}</h2>
       <div className="items">
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
@@ -50,7 +50,7 @@ const CollectionPage = (props) => {
 // });
 
 const mapStateToProps = (state) => ({
-  collection: selectCollections(state)
+  collection: selectCollections(state),
 });
 
 export default connect(mapStateToProps)(CollectionPage);

@@ -13,22 +13,22 @@ const SignIn = () => {
 
   const [state, setState] = useState({
     password: "",
-    email: ""
+    email: "",
   });
   const { email, password } = state;
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setState({ ...state, email: "", password: "" });
-    } catch (error) { 
+    } catch (error) {
       console.log(error);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setState({ ...state, [name]: value });
   };
