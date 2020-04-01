@@ -6,7 +6,11 @@ import createSagaMiddleware from "redux-saga";
 import thunk from "redux-thunk";
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [logger, thunk, sagaMiddleware];
+const middlewares = [
+  logger,
+  thunk,
+  // , sagaMiddleware
+];
 
 //Check if it's chrome
 const isChrome =
@@ -16,9 +20,9 @@ const isChrome =
 
 const middlewaresWithDevtools = isChrome
   ? compose(
-      (applyMiddleware(...middlewares),
+      applyMiddleware(...middlewares),
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__())
+        window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   : applyMiddleware(...middlewares);
 
@@ -26,7 +30,18 @@ const middlewaresWithDevtools = isChrome
 
 export const store = createStore(rootReducer, middlewaresWithDevtools);
 
+// export const store = createStore(
+//   rootReducer,
+//   compose(
+//     applyMiddleware(...middlewares),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
+//       window.__REDUX_DEVTOOLS_EXTENSION__()
+//   )
+// );
+
 // sagaMiddleware.run()
+
+
 
 export const persistor = persistStore(store);
 
