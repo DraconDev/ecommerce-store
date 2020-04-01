@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
 import "./pages/homepage/homepage.styles.scss";
@@ -8,7 +8,7 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
 import {
   auth,
-  createUserProfileDocument
+  createUserProfileDocument,
   // addCollectionAndDocuments
 } from "./firebase/firebase-utils";
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ function App(props) {
   // console.log("mainprops", props);
   const {
     setCurrentUser,
-    currentUser
+    currentUser,
     // Used to upload collection
     // , collectionsArray
   } = props;
@@ -41,7 +41,7 @@ function App(props) {
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data()
+            ...snapShot.data(),
           });
         });
       } else {
@@ -59,7 +59,7 @@ function App(props) {
   }, []);
 
   return (
-    <div>
+    <div className="background">
       <Header
       // currentUser={currentUser}
       />
@@ -85,13 +85,13 @@ function App(props) {
 // });
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
   // Used to upload collection
   // collectionsArray: selectCollectionsForPreview
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 // export default App;
 export default connect(mapStateToProps, mapDispatchToProps)(App);
