@@ -8,6 +8,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [logger, thunk, sagaMiddleware];
 
+//Check if it's chrome
 const isChrome =
   !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
