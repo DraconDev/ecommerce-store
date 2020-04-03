@@ -1,6 +1,7 @@
 import React from "react";
 import { getState } from "react";
 import { connect, useSelector } from "react-redux";
+import "./collection.styles.scss";
 
 import {
   selectCollection,
@@ -38,7 +39,7 @@ const CollectionPage = (props) => {
     </div>
   );
 
-  return "";
+  // return "";
 };
 
 // const mapStateToProps = (state, ownProps) => ({
