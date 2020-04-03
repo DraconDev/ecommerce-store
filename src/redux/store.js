@@ -2,45 +2,42 @@ import { createStore, applyMiddleware, compose } from "redux";
 import logger from "redux-logger";
 import rootReducer from "./root-reducer";
 import { persistStore } from "redux-persist";
-import createSagaMiddleware from "redux-saga";
+// import createSagaMiddleware from "redux-saga";
 import thunk from "redux-thunk";
-const sagaMiddleware = createSagaMiddleware();
+import { composeWithDevTools } from "redux-devtools-extension";
+// console.log(process.env.NODE_ENV);
+// const sagaMiddleware = createSagaMiddleware();
 
+const initialState = {};
 const middlewares = [
   logger,
   thunk,
   // , sagaMiddleware
 ];
 
-const isChrome =
-  !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+const devTools =
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(...middlewares)
+    : composeWithDevTools(applyMiddleware(...middlewares));
 
-// console.log("store.js", isChrome);
+export const store = createStore(rootReducer, initialState, devTools);
 
-const middlewaresWithDevtools = isChrome
-  ? compose(
-      applyMiddleware(...middlewares),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  : applyMiddleware(...middlewares);
+// const isChrome =
+//   !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
-// console.log(middlewaresWithDevtools);
+// // console.log("store.js", isChrome);
 
-export const store = createStore(rootReducer, middlewaresWithDevtools);
+// const middlewaresWithDevtools = isChrome
+//   ? compose(
+//       applyMiddleware(...middlewares),
+//       window.__REDUX_DEVTOOLS_EXTENSION__ &&
+//         window.__REDUX_DEVTOOLS_EXTENSION__()
+//     )
+//   : applyMiddleware(...middlewares);
 
-// export const store = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(...middlewares),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//       window.__REDUX_DEVTOOLS_EXTENSION__()
-//   )
-// );
+// // console.log(middlewaresWithDevtools);
 
-// sagaMiddleware.run()
-
-
+// export const store = createStore(rootReducer, middlewaresWithDevtools);
 
 export const persistor = persistStore(store);
 
