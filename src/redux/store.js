@@ -15,10 +15,16 @@ const middlewares = [
   // , sagaMiddleware
 ];
 
+<<<<<<< HEAD
 const devTools =
   process.env.NODE_ENV === "production"
     ? applyMiddleware(...middlewares)
     : composeWithDevTools(applyMiddleware(...middlewares));
+=======
+//Check if it's chrome
+const isChrome =
+  !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+>>>>>>> live init
 
 export const store = createStore(rootReducer, initialState, devTools);
 
